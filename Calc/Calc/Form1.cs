@@ -12,6 +12,7 @@ namespace Calc
 {
     public partial class Form1 : Form
     {
+        List<Button> BTN = new List<Button>();
         public string eded1="";
         public string eded2 = "";
         public string emeliyyat;
@@ -19,7 +20,9 @@ namespace Calc
         {
             InitializeComponent();
             Create();
+            this.KeyPreview = true;
             Emeliyyatlar();
+            this.KeyUp += btn_KeyDown;
         }
 
         static int count = 0;
@@ -47,6 +50,7 @@ namespace Calc
         {
             count++;
             Button btn = sender as Button;
+
             textBox1.Text += btn.Text;
             emeliyyat = btn.Text;
         }
@@ -85,11 +89,33 @@ namespace Calc
                 btn.Click += emelliyat;
                 btn.Top = Toppos;
                 btn.Left = Leftpos;
+               
+              //  btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btn_KeyDown);
                 Controls.Add(btn);
+              
                 Toppos += 70;
 
             }
         }
+
+        private void btn_KeyDown(object sender, KeyEventArgs e)
+        {
+            foreach (Button item in BTN)
+            {
+                item.BackColor = Color.White;
+            }
+            var a = e.KeyCode.ToString();
+            MessageBox.Show(e.KeyCode.ToString());
+            foreach (Button item in BTN)
+            {
+                if (item.Name ==a[a.Length-1].ToString())
+                {
+                    item.BackColor = Color.Green;
+                }
+            }
+
+        }
+
         void Create()
         {
             int Toppos = 90;
@@ -101,9 +127,12 @@ namespace Calc
                 btn.Height = 60;
                 btn.Text = (i - 1).ToString();
                 btn.Top = Toppos;
+                btn.Name = btn.Text;
                 btn.Left = Leftpos;
                 btn.Click += eded;
                 Controls.Add(btn);
+                BTN.Add(btn);
+                btn.BackColor = Color.White;
                 Leftpos += 70;
                 if (i % 3 == 0)
                 {
