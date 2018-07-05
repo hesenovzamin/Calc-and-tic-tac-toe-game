@@ -70,7 +70,7 @@ namespace Xo
                     MessageBox.Show(button[i].Text + "  Qalibdir");
                     this.Close();
                 }
-                if (button[i+2].Text == button[i + 4].Text && button[i+2].Text == button[i + 6].Text && button[i].Text != "")
+                if (button[i+2].Text == button[i + 4].Text && button[i+2].Text == button[i + 6].Text && button[i + 2].Text != "")
                 {
                     MessageBox.Show(button[i].Text + "  Qalibdir");
                     this.Close();
