@@ -115,8 +115,32 @@ namespace Calc
 
         private void Hesabla_Click(object sender, EventArgs e)
         {
-
-            label1.Text = Emeliyyat(Convert.ToInt32(eded1), Convert.ToInt32(eded2), emeliyyat).ToString();
+            string a = "";
+            string b = "";
+            string emeliyyatt = "";
+            if (eded1 != "" && eded2 !="")
+            {
+                label1.Text = Emeliyyat(Convert.ToInt32(eded1), Convert.ToInt32(eded2), emeliyyat).ToString();
+            }
+            for (int i = 0; i < textBox1.Text.Length; i++)
+            {
+                if (textBox1.Text[i]=='+' || textBox1.Text[i] == '-' || textBox1.Text[i] == '*' || textBox1.Text[i] == '/')
+                {
+                    emeliyyatt = textBox1.Text[i].ToString();
+                    for (int j = 0; j < textBox1.Text.Length; j++)
+                    {
+                        if (j<i)
+                        {
+                            a += textBox1.Text[j];
+                        }
+                        else if (j>i)
+                        {
+                            b += textBox1.Text[j];
+                        }
+                    }
+                    label1.Text = Emeliyyat(Convert.ToInt32(a), Convert.ToInt32(b), emeliyyatt).ToString();
+                }
+            }
         }
     }
 }
